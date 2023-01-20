@@ -1,0 +1,12 @@
+package IfElse;
+
+public class ex01 {
+
+	public static void main(String[] args) {
+
+		if(true) {
+			System.out.println("Hello World");
+		}
+	}
+
+}
