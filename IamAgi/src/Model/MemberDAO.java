@@ -7,9 +7,4 @@ public class MemberDAO {
 	
 	
 	
-	
-	
-	
-	
-	
 }
