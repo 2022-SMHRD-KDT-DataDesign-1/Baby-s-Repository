@@ -17,9 +17,9 @@ public class JoinDAO {
 	public void getCon() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:xe"; // 이부분 일단 바꾼 오라클 서버에 맞게 바꿔야됩니다 user password도
-			String user = "system";
-			String password = "12345";
+			String url = "jdbc:oracle:thin:@gjaischool-b.ddns.net:1525:xe"; // 이부분 일단 바꾼 오라클 서버에 맞게 바꿔야됩니다 user password도
+			String user = "campus_d_0120_3";
+			String password = "smhrd3";
 			conn = DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("회원가입 : 데이터베이스 연결 실패");
@@ -47,12 +47,13 @@ public class JoinDAO {
 
 		try {
 			getCon();
-			String sql = "insert into join values (?,?,?)";
+			String sql = "insert into USER_INFO values (?,?,?)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
 			psmt.setString(3, dto.getName());
 			row = psmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("SQL 전송 실패");
 			e.printStackTrace();
@@ -62,13 +63,16 @@ public class JoinDAO {
 		return row;
 
 	}
+	
+	
+	
 
 	public int delete(JoinDTO dto) {
 		int row = 0;
 		getCon();
 
 		try {
-			String sql = "delete from join where name = ? ";
+			String sql = "delete from USER_INFO where name = ? ";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getName());
 			row = psmt.executeUpdate(); 
@@ -84,15 +88,14 @@ public class JoinDAO {
 		getCon();
 
 		try {
-			String sql = "select * from join";
+			String sql = "select * from USER_INFO";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
 				String id = rs.getString(1);
-				String pw = rs.getString(2);
-				String name = rs.getString(3);
-				JoinDTO dto = new JoinDTO(id, pw, name);
+				String name = rs.getString(2);
+				JoinDTO dto = new JoinDTO(id, name);
 				list.add(dto);
 			}
 
@@ -111,7 +114,7 @@ public class JoinDAO {
 		getCon();
 
 		try {
-			String sql = "select * from join where name = ?";
+			String sql = "select * from USER_INFO where name = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getName());
 
@@ -139,7 +142,7 @@ public class JoinDAO {
 		boolean result = false;
 
 		try {
-			String sql = "select * from join where id = ? and pw = ?";
+			String sql = "select * from USER_INFO where id = ? and pw = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());

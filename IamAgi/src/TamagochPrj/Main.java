@@ -43,7 +43,7 @@ public class Main {
 				// 전체조회
 				// select
 				System.out.println("======== 전체 회원 정보 ========");
-				System.out.println("ID           PW         NAME"); // 여기는 PW를 지우는게 맞을까요??
+				System.out.println("ID                      NAME"); // 여기는 PW를 지우는게 맞을까요??
 				System.out.println("----------------------------");
 
 				ct.select();

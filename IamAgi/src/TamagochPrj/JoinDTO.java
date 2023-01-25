@@ -5,6 +5,14 @@ public class JoinDTO {
 	private String id;
 	private String pw;
 	private String name;
+	public String b_date;
+	public int growth;
+	public int tired;
+	public int hungry;
+	public int boring;
+	public int sleeping;
+	public int knowledge;
+	
 
 	public JoinDTO(String id, String pw, String name) {
 		super();
@@ -46,5 +54,6 @@ public class JoinDTO {
 		this.id = id;
 		this.pw = pw;
 	}
+	
 
 }
